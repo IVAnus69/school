@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Задачки{% endblock title %}
+{% block content %}
+    <h1>Задачки</h1>
+    {% for exercise_type in exercise_types %}
+    <h2>{{ exercise_type.name }}</h2>
+
+    {% for exercise in exercises %}
+        {% if exercise_type == exercise.type_id %}
+            <a>№{{ exercise.id }}</a>
+            <a href="exercise/{{ exercise.id }}">{{ exercise.text }}</a><br>
+        {% endif %}
+    {% endfor %}
+    {% endfor %}
+{% endblock content %}

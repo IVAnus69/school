@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}№{{ exercise.id }}{% endblock title %}
+{% block content %}
+
+<h1>№{{ exercise.id }}</h1>
+<h2>{{ exercise.type_id.name }}</h2>
+<p>{{ exercise.text }}</p>
+
+{% if exercise.image %}
+<p><img src="{{ exercise.image.url }}" width="500px" title="№{{ exercise.id }}"></p>
+{% endif %}
+
+{% if exercise.video %}
+<!--<iframe width="560" height="315"
+    src="https://www.youtube.com/embed/{{ exercise.video }}">
+</iframe>-->
+<iframe width="560" height="315"
+        src="https://www.youtube.com/embed/{{ exercise.video }}"
+        title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe><br>
+{% endif %}
+
+
+{% for error in form.non_field_errors %}
+<span>{{ error }}</span>
+{% endfor %}
+
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <a>{{ field.label }}</a>
+    <a>{{ field }}</a>
+    {% endfor %}
+    <button name="answer_button" type="submit">Применить</button>
+</form>
+{% endblock content %}

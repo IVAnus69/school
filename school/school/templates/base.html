@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Title{% endblock title %} | school</title>
+</head>
+<body>
+    {% block navbar %}
+        <ul>
+            <li><a href="/">Главная</a></li>
+            <li><a href="/math">Математика</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="/profile">Профиль</a></li>
+            {% else %}
+                <li><a href="/profile/login">Войти</a></li>
+                <li><a href="/profile/registration">Регистрация</a></li>
+            {% endif %}
+        </ul>
+    {% endblock navbar %}
+    {% block content %} {% endblock content %}
+</body>
+</html>
